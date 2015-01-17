@@ -1,0 +1,68 @@
+/*TYPOGRAPHY*/
+$font_header: Roboto Slab, serif;	/* Google Fonts */
+$font_header: Roboto Slab, serif; /* Goodle Fonts */
+$font_text: Lato, sans-serif;	/* Google Fonts */
+
+/*COLORS */
+$color_logo_1: #006CED;
+$color_logo_2: #4A4A4A;
+$color_logo_3: #fff;
+
+$color_text_1: #000;
+$color_text_2: #7a7a7a;
+
+$color_bg_1: #fff;
+$color_bg_2: #000;
+
+$color_button_1: #fff;
+$color_button_2: #000;
+
+/*BUTTONS*/
+.button_flat {
+
+}
+
+.button_flat:hover {
+
+}
+
+.button_flat:active {
+}
+
+.button_ghost {
+	display: block;
+	width: 200px;
+	padding: 8px;
+	color: $color_text_1;
+	border: 2px solid $color_text_1;
+	text-align: center;
+	outline: none;
+	text-decoration: none;
+	transition: background-color 0.2s ease-out,
+	border-color 0.2s ease-out;
+}
+
+.button_ghost:hover,
+.button_ghost:active {
+	text-decoration: none;
+	color: $color_text_2;
+	text-decoration: none;
+	background-color: #fff; /* fallback */
+	background-color: rgba(255, 255, 255, 0.4);
+	border-color: #fff; /* fallback */
+	border-color: rgba(255, 255, 255, 0.4);
+		transition: background-color 0.3s ease-in,
+		border-color 0.3s ease-in;
+}
+
+
+
+
+
+
+
+
+
+
+
+
