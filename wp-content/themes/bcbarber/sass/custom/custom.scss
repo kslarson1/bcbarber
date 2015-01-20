@@ -1,5 +1,3 @@
-@import "custom/master_style";
-
 .center {
 	text-align: center;
 }
@@ -10,20 +8,143 @@
 
 }
 .fixed_bg_home {
-
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #fff;
+	min-height: 700px;
+	h1 {
+		padding-top: 4em;
+		color: white;
+		font-size: 5em;
+	}
+	i {
+		margin-top: 3em;
+		color: white;
+	}
 }
 
 /*SERVICES SECTION*/
 #services {
-
 }
 
 .flat_bg {
+	background-color: $color_bg_1;
+	width: 100%;
+	margin: 0;
+	padding: 4em 0;
+}
 
+.ch-grid {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    width: 100%;
+}
+
+.ch-grid:after,
+.ch-item:before {
+    content: '';
+    display: block;
+}
+
+.ch-grid:after {
+    clear: both;
+}
+
+.service_box {
+	display: block;
+	position: relative;
+	margin: 2em auto 0 auto;
+	width: 100%;
+	max-width: 400px;
+	min-height: 400px;
+	float: left;
+	border: 1px solid blue;
+	background-color: #fff;
+	h4 {
+		text-align: center;
+	}
+	hr {
+		margin: .1em auto;
+	}
+	p {
+		padding: 4px 14px;
+	}
+	img {
+		width: 100%;
+	}
+}
+
+.service_box_img {
+	width: 100%;
+	height: 340px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #fff;
+}
+
+.button_flat_services {
+	display: block;
+	width: 100%;
+	height: 40px;
+	background-color: gray;
+	margin: 0;
+	padding: 8px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+
+.button_flat_services:hover,
+.button_flat_services:active, {
+	text-decoration: none;
+}
+
+.service_details {
+	display: inline-block;
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+	background-color: gray;
+	margin: 0;
+	padding: 13px 0 0 3px;
+	i {
+		display: inline-block;
+		padding-left: 1.5em;
+	}
+	p {
+		margin: 0;
+		padding: 0 1.5em 0 0;
+		font-size: 14px;
+	}
 }
 
 /*ABOUT SECTION*/
 #about {
-
+	background-color: $color_bg_2;
+	width: 100%;
+	margin: 0;
+	padding: 4em 0;
 }
+
+.about_full {
+	width: 90%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

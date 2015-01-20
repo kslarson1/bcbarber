@@ -27,7 +27,9 @@ get_header(); ?>
 		<div class="col-xs-12 center">
 			<h1><?php the_field('home_header'); ?></h1>
 			<h3><?php the_field('home_subheader'); ?></h3>
-			<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL">Book Now</a>
+			<br>
+			<br>
+			<a href="https://www.schedulicity.com/Scheduling/BBCLVL" class="button_flat" target="_blank">Book Now</a>
 			<i class="fa fa-angle-double-down fa-4x"></i>
 		</div>
 	</div>
@@ -42,10 +44,13 @@ get_header(); ?>
 	<div class="container">
 	<div class="row">
 		<div class="col-xs-12 center">
-			<h2><?php the_field('services_header'); ?></h2>
+			<h1><?php the_field('services_header'); ?></h1>
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-xs-12">
+		<ul class="ch-grid">
+		 <div class="row">
 	<!-- BEGIN REPEATER - SERVICES -->
 <?php
 
@@ -56,11 +61,19 @@ if( have_rows('services_list') ):
     while ( have_rows('services_list') ) : the_row(); ?>
 
         <!-- // display a sub field value -->
-        <div class="service_box">
-	        <img src="<?php the_sub_field('services_list_image'); ?>" />
+       
+        <div class="col-xs-12 col-sm-6 col-md-4">
+        <li class="service_box">
+			<div class="service_box_img" style="background: url(<?php the_sub_field('services_list_image'); ?>)">
+			</div>
 	        <h4><?php the_sub_field('services_list_name'); ?></h4>
+	        <hr>
 	        <p><?php the_sub_field('services_list_text'); ?></p>
 	        <a class="button_flat_services" href="<?php the_sub_field('services_list_link'); ?>">Book Now</a>
+	        <span class="service_details">
+	        	<i class="fa fa-clock-o" style="float: left">  <?php the_sub_field('services_list_time'); ?></i><p style="float: right"><?php the_sub_field('services_list_cost'); ?></p>
+	        </span>
+		</li>
 		</div>
 
     <?php endwhile;
@@ -73,6 +86,9 @@ endif;
 
 ?>
 	<!-- END REPEATER - SERVICES -->
+		</div>
+		</ul>
+		</div>
 	</div>
 	</div>
 	</div>
@@ -88,15 +104,17 @@ endif;
 	</div>
 </div>
 <div class="row">
-	<img class="about_full" src="<?php the_field('about_image'); ?>" />
+	<div class="col-xs-12 ">
+		<img class="about_full" src="<?php the_field('about_image'); ?>" />
+	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+	<div class="col-xs-12 col-md-8 col-md-offset-2">
 	<p><?php the_field('about_text'); ?></p>
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-12 center">
 		<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL">Book Now</a>
 	</div>
 </div>
