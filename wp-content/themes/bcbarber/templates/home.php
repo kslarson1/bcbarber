@@ -105,12 +105,13 @@ endif;
 </div>
 <div class="row">
 	<div class="col-xs-12 ">
-		<img class="about_full" src="<?php the_field('about_image'); ?>" />
+		<div class="about_full" style="background: url(<?php the_field('about_image'); ?>)">	<!-- ABOUT IMAGE -->
+		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-md-8 col-md-offset-2">
-	<p><?php the_field('about_text'); ?></p>
+	<p><?php the_field('about_text'); ?></p>	<!-- ABOUT TEXT -->
 	</div>
 </div>
 <div class="row">
@@ -121,6 +122,50 @@ endif;
 </div>
 </div>
 <!-- END OF ABOUT SECTION -->
+
+<!-- START OF LOCATOIN SECTION -->
+<div id="location">
+<div class="container">
+<div class="row">
+	<div class="col-xs-12 col-sm-5 col-sm-offset-1">
+		<h3><?php the_field('location_header'); ?></h3>
+		<p><?php the_field('location_text'); ?></p>
+		<hr>	
+		<h3><?php the_field('location_hours_header'); ?></h3>
+<!-- BEGINNING OF REPEATER -->
+<div class="repeater">
+<?php
+
+// check if the repeater field has rows of data
+if( have_rows('location_hours') ):
+
+ 	// loop through the rows of data
+    while ( have_rows('location_hours') ) : the_row(); ?>
+
+        <!-- // display a sub field value -->
+        <p><b><?php the_sub_field('hours_day'); ?> </b><?php the_sub_field('hours_hours'); ?></p>
+
+    <?php endwhile;
+
+else :
+
+    // no rows found
+
+endif;
+
+?>
+<!-- END OF REPEATER -->
+</div>
+		
+
+	</div>
+	<div class="col-xs-12 col-sm-5">
+		<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=BC%20Barber%20Co.%2C%203210%20E%20Colfax%20Ave%2C%20Denver%2C%20CO%2080206%2C%20United%20States&key=AIzaSyAG9xmCxdpzO_SZ4gppoE2kzB2MkZiktP4"></iframe>  <!-- GOOGLE MAPS -->
+	</div>
+</div>
+</div>
+</div>
+<!-- END OF LOCATION SECTION -->
 
 			<?php endwhile; // end of the loop. ?>
 

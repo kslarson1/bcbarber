@@ -12,7 +12,8 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			
+			hi there
+			need to update
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

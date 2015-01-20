@@ -130,7 +130,30 @@
 }
 
 .about_full {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #fff;
+	min-height: 600px;
 	width: 90%;
+	max-width: 900px;
+	margin: 2em auto 3em auto;
+}
+
+/*LOCATION SECTION*/
+#location {
+	padding: 3em 0;
+	background-color: $color_bg_1;
+	iframe {
+		padding: 1em;
+	}
+}
+
+.repeater {
+	p {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 
