@@ -1,7 +1,22 @@
 /*TYPOGRAPHY*/
-$font_header: Roboto Slab, serif;	/* Google Fonts */
-$font_header: Roboto Slab, serif; /* Goodle Fonts */
-$font_text: Lato, sans-serif;	/* Google Fonts */
+$font_header: Playfair Display SC, serif;	/* Google Fonts */
+$font_text: Roboto, sans-serif;	/* Google Fonts */
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: $font_header;
+}
+
+p,
+i,
+body,
+button,
+input,
+select,
+textarea {
+	font-family: $font_text;
+	font-weight: 300;
+}
+
 
 /*FONT SIZES*/
 h1 {
@@ -35,18 +50,21 @@ $color_logo_1: #006CED;
 $color_logo_2: #4A4A4A;
 $color_logo_3: #fff;
 
-$color_text_1: #000;
+$color_text_1: #000;	/* Black */
 $color_text_2: #7a7a7a;
 
 $color_bg_1: #eee;
-$color_bg_2: #fff;
+$color_bg_2: #fff;	/* White */
+$color_bg_3: #333;   /* Dark Gray/Black */
 
-$color_button_1: rgba(184,115,51,1);
-$color_button_2: #fff;
-$color_button_3: rgba(184,115,51,1);
+$color_button_1: rgba(255,255,255,.6);	/* White-transparent */
+$color_button_2: #000;					/* Black */
+$color_button_3: rgba(184,115,51,1);	/* Copper */
+$color_button_4: #fff;					/* White */
 
 /*BUTTONS*/
 .button_flat {
+	font-weight: 400;
 	margin: .5em auto 0 auto;
 	padding: 8px;
 	display: block;
@@ -54,59 +72,23 @@ $color_button_3: rgba(184,115,51,1);
 	color: $color_button_2;
 	background-color: $color_button_1;
 	font-size: 1.3em;
-	width: 200px;
+	width: 220px;
 	height: 50px;
-	border: 2px solid $color_button_2;
+	border: 2px solid $color_button_3;
 }
 
 
 
 .button_flat:hover,
 .button_flat:active {
+	font-weight: 300;
 	text-decoration: none;
 	background-color: $color_button_3;
 	border: 2px solid $color_button_3;
+	color: $color_button_4;
 	-webkit-transition: all .3s;
 	-moz-transition: all .3s;
 	-ms-transition: all .3s;
 	-o-transition: all .3s;
 		transition: all .3s;  
 }
-
-.button_ghost {
-	display: block;
-	width: 200px;
-	padding: 8px;
-	color: $color_text_1;
-	border: 2px solid $color_text_1;
-	text-align: center;
-	outline: none;
-	text-decoration: none;
-	transition: background-color 0.2s ease-out,
-	border-color 0.2s ease-out;
-}
-
-.button_ghost:hover,
-.button_ghost:active {
-	text-decoration: none;
-	color: $color_text_2;
-	text-decoration: none;
-	background-color: #fff; /* fallback */
-	background-color: rgba(255, 255, 255, 0.4);
-	border-color: #fff; /* fallback */
-	border-color: rgba(255, 255, 255, 0.4);
-		transition: background-color 0.3s ease-in,
-		border-color 0.3s ease-in;
-}
-
-
-
-
-
-
-
-
-
-
-
-

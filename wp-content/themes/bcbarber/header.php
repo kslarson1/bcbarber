@@ -9,6 +9,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+<link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:400,700|Roboto:500,300,400' rel='stylesheet' type='text/css'>	<!-- GOOGLE FONTS -->
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -23,14 +24,20 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'bcbarber' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'bcbarber' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- #site-navigation -->
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+			<ul>
+				<li><a class="button_nav" href="#home"><h5>Home</h5></a></li>
+				<li><a class="button_nav" href="#services"><h5>Services</h5></a></li>
+				<li><a class="button_nav" href="#about"><h5>About</h5></a></li>
+				<li><a class="button_nav" href="#location"><h5>Location</h5></a></li>
+			</ul>
+			</nav><!-- #site-navigation -->
+			</div><!-- col-xs-12 -->
+		</div><!-- row -->
+		</div><!-- container-fluid -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

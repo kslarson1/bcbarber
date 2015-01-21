@@ -17,8 +17,6 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'content', 'page' ); ?>
-
 <!-- START OF HOME SECTION -->
 <div id="home">
 	<div class="fixed_bg_home" style="background-image: url(<?php the_field('home_bg_image'); ?>);">
@@ -44,7 +42,7 @@ get_header(); ?>
 	<div class="container">
 	<div class="row">
 		<div class="col-xs-12 center">
-			<h1><?php the_field('services_header'); ?></h1>
+			<h1 class="double_border"><?php the_field('services_header'); ?></h1>
 		</div>
 	</div>
 	<div class="row">
@@ -69,9 +67,9 @@ if( have_rows('services_list') ):
 	        <h4><?php the_sub_field('services_list_name'); ?></h4>
 	        <hr>
 	        <p><?php the_sub_field('services_list_text'); ?></p>
-	        <a class="button_flat_services" href="<?php the_sub_field('services_list_link'); ?>">Book Now</a>
+	        <a class="button_flat_services" href="<?php the_sub_field('services_list_link'); ?>" target="_blank">Book Now</a>
 	        <span class="service_details">
-	        	<i class="fa fa-clock-o" style="float: left">  <?php the_sub_field('services_list_time'); ?></i><p style="float: right"><?php the_sub_field('services_list_cost'); ?></p>
+	        	<i class="fa fa-clock-o"></i><p><?php the_sub_field('services_list_time'); ?></p><p class="service_right"><?php the_sub_field('services_list_cost'); ?></p>
 	        </span>
 		</li>
 		</div>
@@ -100,7 +98,7 @@ endif;
 <div class="container">
 <div class="row">
 	<div class="col-xs-12 center">
-		<h1><?php the_field('about_header'); ?></h1>
+		<h1 class="double_border"><?php the_field('about_header'); ?></h1>
 	</div>
 </div>
 <div class="row">
@@ -123,7 +121,7 @@ endif;
 </div>
 <!-- END OF ABOUT SECTION -->
 
-<!-- START OF LOCATOIN SECTION -->
+<!-- START OF LOCATION SECTION -->
 <div id="location">
 <div class="container">
 <div class="row">
@@ -156,8 +154,7 @@ endif;
 ?>
 <!-- END OF REPEATER -->
 </div>
-		
-
+<br>
 	</div>
 	<div class="col-xs-12 col-sm-5">
 		<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=BC%20Barber%20Co.%2C%203210%20E%20Colfax%20Ave%2C%20Denver%2C%20CO%2080206%2C%20United%20States&key=AIzaSyAG9xmCxdpzO_SZ4gppoE2kzB2MkZiktP4"></iframe>  <!-- GOOGLE MAPS -->
