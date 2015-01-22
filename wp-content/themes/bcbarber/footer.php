@@ -37,9 +37,6 @@
 		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-<script src="/wp-content/themes/bcbarber/js/fastclick.js"></script>
-<script src="/wp-content/themes/bcbarber/js/scroll.js"></script>
-<script src="/wp-content/themes/bcbarber/js/fixed-responsive-nav.js"></script>
 <?php wp_footer(); ?>
 
 </body>
