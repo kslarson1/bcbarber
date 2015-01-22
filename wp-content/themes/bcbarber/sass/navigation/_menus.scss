@@ -35,37 +35,3 @@
 	display: block;
 }
 
-/*NAVIGATION*/
-.main-navigation {
-	clear: both;
-	display: block;
-	width: 570px;
-	margin: 10px auto;
-	ul {
-		display: block;
-		list-style: none;
-		margin: 0 auto;
-	}
-	li {
-		float: left;
-		position: relative;
-	}
-
-}
-
-/* Small menu */
-.menu-toggle {
-	display: none;
-}
-
-@media screen and (max-width: 600px) {
-	.menu-toggle,
-	.main-navigation.toggled .nav-menu {
-		display: block;
-	}
-
-	.main-navigation ul {
-		display: none;
-	}
-}
-

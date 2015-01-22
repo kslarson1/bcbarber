@@ -15,6 +15,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">	<!-- Font Awesome -->
+<script src="/wp-content/themes/bcbarber/js/responsive-nav.js" type="text/javascript"></script>  <!-- RESPONSIVE FIXED NAV BAR -->
 
 <?php wp_head(); ?>
 </head>
@@ -23,21 +24,19 @@
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'bcbarber' ); ?></a>
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12">
-			<nav id="site-navigation" class="main-navigation" role="navigation">
-			<ul>
-				<li><a class="button_nav" href="#home"><h5>Home</h5></a></li>
-				<li><a class="button_nav" href="#services"><h5>Services</h5></a></li>
-				<li><a class="button_nav" href="#about"><h5>About</h5></a></li>
-				<li><a class="button_nav" href="#location"><h5>Location</h5></a></li>
-			</ul>
-			</nav><!-- #site-navigation -->
-			</div><!-- col-xs-12 -->
-		</div><!-- row -->
-		</div><!-- container-fluid -->
+	<header>
+		 <a href="#home" class="logo" data-scroll>Fixed Nav</a>
+		
+			<nav class="nav-collapse">
+		        <ul>
+		          <li class="menu-item"><a href="#home" data-scroll>Home</a></li>
+		          <li class="menu-item"><a href="#services" data-scroll>Services</a></li>
+		          <li class="menu-item"><a href="#about" data-scroll>About</a></li>
+		          <li class="menu-item"><a href="#location" data-scroll>Location</a></li>
+		        </ul>
+      		</nav>
+
+		
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
