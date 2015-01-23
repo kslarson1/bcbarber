@@ -183,6 +183,7 @@ h6 {
 /* Black */
 /* Copper */
 /* White */
+/* Copper Transparent */
 /*BUTTONS*/
 .button_flat {
   font-weight: 400;
@@ -228,19 +229,23 @@ h6 {
   background-color: #fff;
   min-height: 700px; }
   .fixed_bg_home h1 {
-    padding-top: 4em;
+    padding-top: 3em;
     color: white;
     font-size: 5em; }
   .fixed_bg_home i {
     margin-top: 1em;
     color: #fff; }
+  @media screen and (max-width: 900px) {
+    .fixed_bg_home h1 {
+      padding-top: .75em;
+      font-size: 3em; } }
 
 /*SERVICES SECTION*/
 .flat_bg {
   background-color: #eee;
   width: 100%;
   margin: 0;
-  padding: 4em 0 8em 0; }
+  padding: 3em 0 6em 0; }
 
 .ch-grid {
   margin: 0;
@@ -262,7 +267,6 @@ h6 {
   position: relative;
   margin: 2em auto 0 auto;
   width: 100%;
-  max-width: 380px;
   min-height: 400px;
   float: left;
   background-color: #fff;
@@ -280,6 +284,8 @@ h6 {
 
 .service_box_img {
   width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
   height: 340px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -339,11 +345,7 @@ h6 {
   padding: 1em 0 6em 0; }
 
 .about_full {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
   background-color: #fff;
-  min-height: 600px;
   width: 90%;
   max-width: 900px;
   margin: 2em auto 3em auto;
@@ -353,7 +355,7 @@ h6 {
 
 /*LOCATION SECTION*/
 #location {
-  padding: 3em 0;
+  padding: 5em 0;
   background-color: #eee; }
   #location iframe {
     -webkit-box-shadow: 0px 0px 16px 0px rgba(51, 51, 51, 0.5);
@@ -389,6 +391,96 @@ h6 {
       .site-footer .button_flat {
         margin-top: 0; } }
 
+/*BARBERS PAGE*/
+#barbers .double_border {
+  margin-top: 2em; }
+
+.about_item {
+  min-height: 500px;
+  max-height: 800px;
+  width: 100%;
+  max-width: 360px;
+  margin: 1.5em auto; }
+
+.about_item_container {
+  width: 100%;
+  min-height: 200px;
+  max-height: 340px;
+  overflow: scroll;
+  margin-top: 2em; }
+
+.ch-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+  width: 100%; }
+
+.ch-grid:after,
+.ch-item:before {
+  content: '';
+  display: block; }
+
+.ch-grid:after {
+  clear: both; }
+
+.ch-grid li {
+  width: 100%;
+  display: block;
+  position: relative; }
+
+.ch-item {
+  margin: 0 auto 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 300px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 0 0 rgba(184, 115, 51, 0.5), inset 0 0 0 16px rgba(184, 115, 51, 0.5), 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out; }
+
+.ch-info {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  transform: scale(0);
+  backface-visibility: hidden; }
+
+.ch-info h3 {
+  /*Stylize the header */
+  color: #fff;
+  position: relative;
+  letter-spacing: 2px;
+  font-size: 2.25em;
+  margin: 0 30px;
+  padding: 65px 0 0 0;
+  height: 110px; }
+
+.ch-info p {
+  /* Stylize the paragraph font */
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  color: #fff;
+  padding: 10px 5px;
+  margin: 0 30px;
+  font-size: 1.1em;
+  border-top: 1px solid rgba(255, 255, 255, 0.5); }
+
+.ch-item:hover {
+  box-shadow: inset 0 0 0 300px rgba(184, 115, 51, 0.5), inset 0 0 0 16px rgba(184, 115, 51, 0.5), 0 1px 2px rgba(0, 0, 0, 0.1); }
+
+.ch-item:hover .ch-info {
+  opacity: 1;
+  transform: scale(1); }
+
+/*END OF CIRCULAR IMAGES*/
 /*--------------------------------------------------------------
 1.7 Bootstrap
 --------------------------------------------------------------*/

@@ -14,17 +14,20 @@
 		<div class="container">
 		<div class="row center">
 			<div class="col-xs-12 col-sm-4">
-				<h5><?php the_field('footer_address_header'); ?></h5>
+				<h5>Address</h5>
 				<hr>
-				<p><?php the_field('footer_address_text'); ?></p>
+				<p>BC Barber Co.
+				3210 East Colfax Avenue
+				Denver, CO 80206
+					</p>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<h5><?php the_field('footer_phone_header'); ?></h5>
+				<h5>Call Us</h5>
 				<hr>
-				<p><?php the_field('footer_phone_text'); ?></p>
+				<p>(303) 945-4403</p>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<h5><?php the_field('footer_social_header'); ?></h5>
+				<h5>Follow Us</h5>
 				<hr>
 				<a href="https://www.facebook.com/bcbarbercompany"><i class="fa fa-facebook fa-2x"></i></a>
 			</div>

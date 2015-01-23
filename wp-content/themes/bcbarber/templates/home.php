@@ -103,8 +103,7 @@ endif;
 </div>
 <div class="row">
 	<div class="col-xs-12 ">
-		<div class="about_full" style="background: url(<?php the_field('about_image'); ?>)">	<!-- ABOUT IMAGE -->
-		</div>
+		<img class="about_full" src="<?php the_field('about_image'); ?>">	<!-- ABOUT IMAGE -->
 	</div>
 </div>
 <div class="row">
@@ -113,7 +112,7 @@ endif;
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 center">
+	<div class="col-xs-12">
 		<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL">Book Now</a>
 	</div>
 </div>

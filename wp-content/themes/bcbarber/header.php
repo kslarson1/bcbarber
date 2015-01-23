@@ -27,7 +27,7 @@
   <div class="container-fluid">
   <div class="row">
   <div class="col-xs-12">
-    <h2><?php the_field('header_title'); ?></h2>
+    <h2>BC Barber Co.</h2>
     <nav id="nav" role="navigation">
       <ul>
         <li><a href="#home" class="smoothScroll">Home</a></li>
