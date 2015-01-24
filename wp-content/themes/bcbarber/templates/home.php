@@ -28,7 +28,7 @@ get_header(); ?>
 			<br>
 			<br>
 			<a href="https://www.schedulicity.com/Scheduling/BBCLVL" class="button_flat" target="_blank">Book Now</a>
-			<i class="fa fa-angle-double-down fa-4x"></i>
+			<a href="#services" class="smoothScroll"><i class="fa fa-angle-double-down fa-4x"></i></a>
 		</div>
 	</div>
 	</div>
@@ -67,7 +67,7 @@ if( have_rows('services_list') ):
 	        <h4><?php the_sub_field('services_list_name'); ?></h4>
 	        <hr>
 	        <p><?php the_sub_field('services_list_text'); ?></p>
-	        <a class="button_flat_services" href="<?php the_sub_field('services_list_link'); ?>" target="_blank">Book Now</a>
+	        <a class="button_flat_services" href="https://www.schedulicity.com/Scheduling/BBCLVL" target="_blank">Book Now</a>
 	        <span class="service_details">
 	        	<i class="fa fa-clock-o"></i><p><?php the_sub_field('services_list_time'); ?></p><p class="service_right"><?php the_sub_field('services_list_cost'); ?></p>
 	        </span>
@@ -94,7 +94,7 @@ endif;
 <!-- END OF SERVICES SECTION -->
 
 <!-- START OF ABOUT SECTION -->
-<div id="about">
+<div id="about" style="background-image: url(<?php the_field('about_bg_image'); ?>)">
 <div class="container">
 <div class="row">
 	<div class="col-xs-12 center">
@@ -113,7 +113,9 @@ endif;
 </div>
 <div class="row">
 	<div class="col-xs-12">
-		<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL">Book Now</a>
+	<div class="about_inline">
+		<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL" target="_blank">Book Now</a><a class="button_flat" href="/barbers">Meet Us</a>
+	</div>
 	</div>
 </div>
 </div>

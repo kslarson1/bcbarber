@@ -245,7 +245,7 @@ h6 {
   background-color: #eee;
   width: 100%;
   margin: 0;
-  padding: 3em 0 6em 0; }
+  padding: 3em 0 4em 0; }
 
 .ch-grid {
   margin: 0;
@@ -265,7 +265,7 @@ h6 {
 .service_box {
   display: block;
   position: relative;
-  margin: 2em auto 0 auto;
+  margin: 2em auto 1em auto;
   width: 100%;
   min-height: 400px;
   float: left;
@@ -286,7 +286,7 @@ h6 {
   width: 100%;
   max-width: 380px;
   margin: 0 auto;
-  height: 340px;
+  height: 240px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -339,24 +339,31 @@ h6 {
 
 /*ABOUT SECTION*/
 #about {
-  background-color: #fff;
+  background-repeat: repeat;
   width: 100%;
   margin: 0;
   padding: 1em 0 6em 0; }
 
 .about_full {
+  display: block;
   background-color: #fff;
   width: 90%;
-  max-width: 900px;
+  max-width: 800px;
   margin: 2em auto 3em auto;
   -webkit-box-shadow: 0px 0px 16px 0px rgba(51, 51, 51, 0.4);
   -moz-box-shadow: 0px 0px 16px 0px rgba(51, 51, 51, 0.4);
   box-shadow: 0px 0px 16px 0px rgba(51, 51, 51, 0.4); }
 
+.about_inline {
+  text-align: center; }
+  .about_inline a {
+    display: inline-block;
+    margin: 0 1em .5em 1em; }
+
 /*LOCATION SECTION*/
 #location {
   padding: 5em 0;
-  background-color: #eee; }
+  background-color: #fff; }
   #location iframe {
     -webkit-box-shadow: 0px 0px 16px 0px rgba(51, 51, 51, 0.5);
     -moz-box-shadow: 0px 0px 16px 0px rgba(51, 51, 51, 0.5);
@@ -366,34 +373,12 @@ h6 {
   margin: 0;
   padding: 0; }
 
-/*FOOTER*/
-.site-footer {
-  padding: 2em 0 3em 0;
-  background-color: #333;
-  color: #eee; }
-  .site-footer hr {
-    width: 70%;
-    background-color: #b87333;
-    padding: 0;
-    margin: .4em auto; }
-  .site-footer i {
-    color: #eee; }
-  .site-footer i:hover {
-    color: #b87333;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -ms-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s; }
-  .site-footer .button_flat {
-    margin-top: 1.5em; }
-    @media (min-width: 768px) {
-      .site-footer .button_flat {
-        margin-top: 0; } }
-
 /*BARBERS PAGE*/
-#barbers .double_border {
-  margin-top: 2em; }
+#barbers {
+  background-repeat: repeat;
+  width: 100%; }
+  #barbers .double_border {
+    margin-top: 2em; }
 
 .about_item {
   min-height: 500px;
@@ -404,8 +389,7 @@ h6 {
 
 .about_item_container {
   width: 100%;
-  min-height: 200px;
-  max-height: 340px;
+  height: 280px;
   overflow: scroll;
   margin-top: 2em; }
 
@@ -481,6 +465,43 @@ h6 {
   transform: scale(1); }
 
 /*END OF CIRCULAR IMAGES*/
+/*EVENTS PAGE*/
+#events {
+  background-repeat: repeat;
+  width: 100%;
+  margin: 100px 0 3em 0; }
+
+.event_container {
+  width: 100%;
+  height: 400px;
+  background-color: green; }
+
+/*FOOTER*/
+.site-footer {
+  padding: 2em 0 3em 0;
+  background-color: #333;
+  color: #eee; }
+  .site-footer hr {
+    width: 70%;
+    background-color: #b87333;
+    padding: 0;
+    margin: .4em auto; }
+  .site-footer i {
+    color: #eee;
+    margin: 0 .5em; }
+  .site-footer i:hover {
+    color: #b87333;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s; }
+  .site-footer .button_flat {
+    margin-top: 1.5em; }
+    @media (min-width: 768px) {
+      .site-footer .button_flat {
+        margin-top: 0; } }
+
 /*--------------------------------------------------------------
 1.7 Bootstrap
 --------------------------------------------------------------*/
@@ -3883,7 +3904,7 @@ textarea {
 5.2 Fixed Navigation
 --------------------------------------------------------------*/
 #header {
-  z-index: 2;
+  z-index: 20;
   position: fixed;
   width: 100%;
   height: 50px;
@@ -3897,7 +3918,8 @@ textarea {
     background-color: #333;
     color: #b87333;
     padding: 0 .2em;
-    position: absolute; }
+    position: absolute;
+    font-size: 1.8em; }
 
 #nav {
   position: absolute;

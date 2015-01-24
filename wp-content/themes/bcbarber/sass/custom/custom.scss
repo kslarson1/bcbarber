@@ -46,7 +46,7 @@
 	background-color: $color_bg_1;
 	width: 100%;
 	margin: 0;
-	padding: 3em 0 6em 0;
+	padding: 3em 0 4em 0;
 }
 
 .ch-grid {
@@ -70,7 +70,7 @@
 .service_box {
 	display: block;
 	position: relative;
-	margin: 2em auto 0 auto;
+	margin: 2em auto 1em auto;
 	width: 100%;
 	min-height: 400px;
 	float: left;
@@ -99,7 +99,7 @@
 	width: 100%;
 	max-width: 380px;
 	margin: 0 auto;
-	height: 340px;
+	height: 240px;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -159,26 +159,35 @@
 
 /*ABOUT SECTION*/
 #about {
-	background-color: $color_bg_2;
+	background-repeat: repeat;
 	width: 100%;
 	margin: 0;
 	padding: 1em 0 6em 0;
 }
 
 .about_full {
+	display: block;
 	background-color: #fff;
 	width: 90%;
-	max-width: 900px;
+	max-width: 800px;
 	margin: 2em auto 3em auto;
 	-webkit-box-shadow: 0px 0px 16px 0px rgba(51,51,51,.4);
 	-moz-box-shadow: 0px 0px 16px 0px rgba(51,51,51,.4);
 	box-shadow: 0px 0px 16px 0px rgba(51,51,51,.4);
 }
 
+.about_inline {
+	text-align: center;
+	a {
+	display: inline-block;
+	margin: 0 1em .5em 1em;
+	}
+}
+
 /*LOCATION SECTION*/
 #location {
 	padding: 5em 0;
-	background-color: $color_bg_1;
+	background-color: $color_bg_2;
 	iframe {
 		-webkit-box-shadow: 0px 0px 16px 0px rgba(51,51,51,.5);
 		-moz-box-shadow: 0px 0px 16px 0px rgba(51,51,51,.5);
@@ -193,39 +202,12 @@
 	}
 }
 
-/*FOOTER*/
-.site-footer {
-	padding: 2em 0 3em 0;
-	background-color: $color_bg_3;
-	color: $color_bg_1;
-	hr {
-		width: 70%;
-		background-color: $color_button_3;
-		padding: 0;
-		margin: .4em auto;
-	}
-	i {
-		color: $color_bg_1;
-	}
-	i:hover {
-		color: $color_button_3;
-		-webkit-transition: all .5s;
-		-moz-transition: all .5s;
-		-ms-transition: all .5s;
-		-o-transition: all .5s;
-		transition: all .5s;  
-	}
-	.button_flat {
-		margin-top: 1.5em;
-		@media (min-width: 768px) {
-		margin-top: 0;
-		}
-	}
-}
 
 /*BARBERS PAGE*/
 
 #barbers {
+	background-repeat: repeat;
+	width: 100%;
 	.double_border {
 		margin-top: 2em;
 	}
@@ -241,8 +223,7 @@
 
 .about_item_container {
 	width: 100%;
-	min-height: 200px;
-	max-height: 340px;
+	height: 280px;
 	overflow: scroll;
 	margin-top: 2em;
 }
@@ -333,6 +314,50 @@
 }
 	/*END OF CIRCULAR IMAGES*/
 
+/*EVENTS PAGE*/
+#events {
+	background-repeat: repeat;
+	width: 100%;
+	margin: 100px 0 3em 0;
+}
+
+.event_container {
+	width: 100%;
+	height: 400px;
+	background-color: green;
+}
+
+
+/*FOOTER*/
+.site-footer {
+	padding: 2em 0 3em 0;
+	background-color: $color_bg_3;
+	color: $color_bg_1;
+	hr {
+		width: 70%;
+		background-color: $color_button_3;
+		padding: 0;
+		margin: .4em auto;
+	}
+	i {
+		color: $color_bg_1;
+		margin: 0 .5em;
+	}
+	i:hover {
+		color: $color_button_3;
+		-webkit-transition: all .5s;
+		-moz-transition: all .5s;
+		-ms-transition: all .5s;
+		-o-transition: all .5s;
+		transition: all .5s;  
+	}
+	.button_flat {
+		margin-top: 1.5em;
+		@media (min-width: 768px) {
+		margin-top: 0;
+		}
+	}
+}
 
 
 

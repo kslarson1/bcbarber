@@ -30,10 +30,10 @@
     <h2>BC Barber Co.</h2>
     <nav id="nav" role="navigation">
       <ul>
-        <li><a href="#home" class="smoothScroll">Home</a></li>
-        <li><a href="#services" class="smoothScroll">Services</a></li>
-        <li><a href="#about" class="smoothScroll">About</a></li>
-        <li><a href="#location" class="smoothScroll">Location</a></li>
+        <li><a href="www.bcbarberco.com/#home" class="smoothScroll">Home</a></li>
+        <li><a href="www.bcbarberco.com/#services" class="smoothScroll">Services</a></li>
+        <li><a href="www.bcbarberco.com/#about" class="smoothScroll">About</a></li>
+        <li><a href="www.bcbarberco.com/#location" class="smoothScroll">Location</a></li>
       </ul>
     </nav>
     </div> <!-- col-xs-12 -->

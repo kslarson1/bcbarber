@@ -18,7 +18,7 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
 <!-- START OF BARBERS SECTION -->
-<div id="barbers">
+<div id="barbers" style="background-image: url(<?php the_field('barbers_bg_image'); ?>)">
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 center">

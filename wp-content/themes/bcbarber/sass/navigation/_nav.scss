@@ -1,5 +1,5 @@
 #header {
-  z-index: 2;
+  z-index: 20;
   position: fixed;
   width: 100%;
   height: 50px;
@@ -14,6 +14,7 @@
     color: $color_button_3;
     padding: 0 .2em;
     position: absolute;
+    font-size: 1.8em;
   }
 }
 
