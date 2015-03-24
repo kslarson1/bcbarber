@@ -42,7 +42,8 @@ get_header(); ?>
 	<div class="container">
 	<div class="row">
 		<div class="col-xs-12 center">
-			<h1 class="double_border"><?php the_field('services_header'); ?></h1>
+			<h1><?php the_field('services_header'); ?></h1>
+			<hr style="height: 2px">
 		</div>
 	</div>
 	<div class="row">
@@ -98,7 +99,8 @@ endif;
 <div class="container">
 <div class="row">
 	<div class="col-xs-12 center">
-		<h1 class="double_border"><?php the_field('about_header'); ?></h1>
+		<h1><?php the_field('about_header'); ?></h1>
+		<hr style="height: 2px">
 	</div>
 </div>
 <div class="row">
@@ -107,17 +109,22 @@ endif;
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-md-8 col-md-offset-2">
-	<p><?php the_field('about_text'); ?></p>	<!-- ABOUT TEXT -->
+	<div class="col-xs-12 col-md-10 col-md-offset-1">
+		<div class="box_out">
+		<div class="box_thin">
+			<p><?php the_field('about_text'); ?></p>	<!-- ABOUT TEXT -->
+			<div class="row">
+				<div class="col-xs-12">
+				<div class="about_inline">
+					<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL" target="_blank">Book Now</a><a class="button_flat" href="/barbers">Meet Us</a><a class="button_flat" href="/events">Events</a>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-xs-12">
-	<div class="about_inline">
-		<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL" target="_blank">Book Now</a><a class="button_flat" href="/barbers">Meet Us</a>
-	</div>
-	</div>
-</div>
+
 </div>
 </div>
 <!-- END OF ABOUT SECTION -->
@@ -126,7 +133,7 @@ endif;
 <div id="location">
 <div class="container">
 <div class="row">
-	<div class="col-xs-12 col-sm-5 col-sm-offset-1">
+	<div class="col-xs-12 col-sm-4">
 		<h3><?php the_field('location_header'); ?></h3>
 		<p><?php the_field('location_text'); ?></p>
 		<hr>	
@@ -157,8 +164,8 @@ endif;
 </div>
 <br>
 	</div>
-	<div class="col-xs-12 col-sm-5">
-		<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=BC%20Barber%20Co.%2C%203210%20E%20Colfax%20Ave%2C%20Denver%2C%20CO%2080206%2C%20United%20States&key=AIzaSyAG9xmCxdpzO_SZ4gppoE2kzB2MkZiktP4"></iframe>  <!-- GOOGLE MAPS -->
+	<div class="col-xs-12 col-sm-8">
+		<?php echo do_shortcode('[wpgmza id="1"]'); ?>
 	</div>
 </div>
 </div>

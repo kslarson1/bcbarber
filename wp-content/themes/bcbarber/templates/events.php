@@ -18,19 +18,20 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
 <!-- START OF EVENTS SECTION -->
-<div id="events">
+<div id="events" style="background-image: url(<?php the_field('events_bg_image'); ?>)">
 <div class="container">
-<div class="row">
-	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-		<div class="event_container">
-			
-			one third
-			
-			two third	
-			
-		</div>
+<!-- START OF EVENT -->
+<div class="row event_container">
+	<div class="col-xs-12 col-sm-6">
+		<h3><?php the_field('event_header'); ?></h3>
+		<hr>
+		<p><?php the_field('event_text'); ?></p>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<img class="event_image" src="<?php the_field('event_image'); ?>">
 	</div>
 </div>
+<!-- END OF EVENT -->
 </div>
 </div>
 <!-- END OF EVENTS SECTION -->

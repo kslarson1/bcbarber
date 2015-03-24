@@ -112,7 +112,7 @@ function bcbarber_scripts() {
 	wp_enqueue_style( 'bcbarber-style', get_stylesheet_uri() );
 
 	// ADD THE SCRIPTS.JS FILE
-	wp_enqueue_script( 'bcbarber-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery') );
+	wp_enqueue_script( 'bcbarber-scripts', get_template_directory_uri() . '/js/scripts-min.js', array('jquery') );
 
 	wp_enqueue_script( 'bcbarber-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 

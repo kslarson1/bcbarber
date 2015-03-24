@@ -9,7 +9,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-<link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:400,700|Roboto:500,300,400' rel='stylesheet' type='text/css'>	<!-- GOOGLE FONTS -->
+<link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:400,700|Roboto:500,300,400,100' rel='stylesheet' type='text/css'>	<!-- GOOGLE FONTS -->
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -30,10 +30,10 @@
     <h2>BC Barber Co.</h2>
     <nav id="nav" role="navigation">
       <ul>
-        <li><a href="www.bcbarberco.com/#home" class="smoothScroll">Home</a></li>
-        <li><a href="www.bcbarberco.com/#services" class="smoothScroll">Services</a></li>
-        <li><a href="www.bcbarberco.com/#about" class="smoothScroll">About</a></li>
-        <li><a href="www.bcbarberco.com/#location" class="smoothScroll">Location</a></li>
+        <li><a href="/#home" class="smoothScroll">Home</a></li>
+        <li><a href="#services" class="smoothScroll">Services</a></li>
+        <li><a href="/#about" class="smoothScroll">About</a></li>
+        <li><a href="/#location" class="smoothScroll">Location</a></li>
       </ul>
     </nav>
     </div> <!-- col-xs-12 -->

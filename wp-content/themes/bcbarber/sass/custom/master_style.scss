@@ -20,7 +20,7 @@ textarea {
 
 /*FONT SIZES*/
 h1 {
-	font-size: 3em;
+	font-size: 4em;
 }
 
 h2 {
@@ -59,17 +59,29 @@ $color_button_3: rgba(184,115,51,1);	/* Copper */
 $color_button_4: #fff;					/* White */
 $color_button_5: rgba(184,115,51,.5);	/* Copper Transparent */
 
+$white: #FFF;
+$gray-1: #E9E6E0;
+$gray-2: #d3d3d3;	
+$gray-3: #bdbdbd;	
+$gray-4: #a8a8a8;	
+$gray-5: #7e7e7e;
+$gray-6: #3f3f3f;
+$gray-7: #323232;
+$black: #000;
+
 /*BUTTONS*/
 .button_flat {
-	font-weight: 400;
+	font-weight: 300;
 	margin: .5em auto 0 auto;
 	padding: 8px;
 	display: block;
 	text-align: center;
+	
+	letter-spacing: 4px;
 	color: $color_button_2;
 	background-color: $color_button_1;
 	font-size: 1.3em;
-	width: 220px;
+	width: 200px;
 	height: 50px;
 	border: 2px solid $color_button_3;
 }
