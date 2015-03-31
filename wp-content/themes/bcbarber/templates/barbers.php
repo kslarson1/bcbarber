@@ -52,8 +52,8 @@ get_header(); ?>
 		      	<div class="box_out">
 		      		<div class="box_thin">
 		      	<div class="about_item_container">
-		      		<h3><?php the_sub_field('about_barber_name'); ?></h3>
-		        	<p><?php the_sub_field('about_barber_background'); ?></p>
+		      		<h3 class="center"><?php the_sub_field('about_barber_name'); ?></h3>
+		        	<p class="gray-5"><?php the_sub_field('about_barber_background'); ?></p>
 		        </div>
 		        </div>
 		      	</div>

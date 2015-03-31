@@ -1,0 +1,260 @@
+.main-navigation {
+    top: -100px;        /* hides navigation initially*/
+    position: fixed;
+    z-index: 999;
+    margin: 0 auto;
+    text-decoration: none;
+    width: 100%;
+    background-color: $color_header_1;
+    box-shadow: 0 6px 10px rgba(50,50,50,.2);
+
+    transition: 333ms all ease-in-out;      /* this is transition going from normal to :active; */
+		&.active {
+    	top: 0;
+    	}
+
+	ul {
+		list-style: none;
+		margin: 0 .5em 0 0;
+		padding-left: 0;
+		float: right;
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: left;
+			position: absolute;
+			top: 1.5em;
+			left: -999em;
+			z-index: 99999;
+
+			ul {
+				left: -999em;
+				top: 0;
+			}
+
+			li {
+				&:hover > ul {
+					left: 100%;
+				}
+			}
+
+			a {
+				width: 200px;
+			}
+
+			:hover > a {
+			}
+
+			a:hover {
+			}
+		}
+
+		li:hover > ul {
+			left: auto;
+		}
+	}
+	li {
+		float: left;
+		position: relative;
+		&:hover > a {
+		}
+	}
+	a {
+		display: block;
+		padding: 1em;
+		text-decoration: none;
+		color: $color_button_3;
+		background-color: transparent;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 1em;
+		font-weight: 500;
+	}
+
+	a:hover,
+	a:active {
+		text-decoration: none;
+		background-color: $gray-6;
+		color: $white;
+		
+		transition: all 300ms ease-out;
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a {
+	}
+}
+
+/* Small menu. */
+.menu-toggle {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.menu-toggle,
+	.main-navigation.toggled .nav-menu {
+		display: block;
+	}
+
+	.main-navigation ul {
+		display: none;
+	}
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+		overflow: hidden;
+	}
+
+	& .nav-previous {
+		float: left;
+		width: 50%;
+	}
+
+	& .nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+}
+
+
+/*blog header nav*/
+.blog_nav {
+	width: 100%;
+	margin-top: 50px;
+	padding: 1.5em 0;
+	display: inline-block;
+	height: 150px;
+	background-color: $gray-6;
+	h1 {
+		color: $white;
+	}
+	ul {
+		width: 100%;
+		list-style: none;
+		margin: 0 .5em 0 0;
+		padding-left: 0;
+		float: left;
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: right;
+			position: absolute;
+			top: 1.5em;
+			left: -999em;
+			z-index: 99999;
+
+			ul {
+				left: -999em;
+				top: 0;
+			}
+
+			li {
+				&:hover > ul {
+					left: 100%;
+				}
+			}
+
+			a {
+				width: 200px;
+			}
+
+			:hover > a {
+			}
+
+			a:hover {
+			}
+		}
+
+		li:hover > ul {
+			left: auto;
+		}
+	}
+	li {
+		float: left;
+		position: relative;
+		&:hover > a {
+		}
+	}
+	a {
+		display: block;
+		text-decoration: none;
+		margin-left: 1em;
+		text-transform: uppercase;
+		font-size: 1.1em;
+		color: $gray-4;
+		}
+	a:hover, a:active {
+		color:$white;
+		transition: all .5s ease-in;
+	}
+}
+
+
+/*=footer*/
+.menu-blog-menu-container {
+	display: inline-block;
+}
+.site-footer {
+	background-color: $gray-6;
+}
+
+.footer-highlight {
+	display: block;
+	width: 100%;
+	height: 260px;
+	background-color: $gray-6;
+	color: $gray-5;
+	padding: 2em .5em 1.5em .5em;
+	p {
+		margin: .4em 0;
+	}
+	a {
+		color: $gray-5;
+	}
+}
+.footer-highlight:hover {
+	background-color: $black;
+	color: $gray-4;
+	transition: all .5s ease-in;
+	a {
+		color: $gray-4;
+		transition: all .5s ease-in;
+	}
+}
+
+/*social media*/
+.social_container {
+	margin-top: .4em;
+}
+
+.fa-stack-2x {
+    color: $gray-5;
+}
+
+.fa-stack-1x {
+    color: $gray-6;
+}
+.fa-facebook:hover {
+        color: #3b5998;
+        transition: all 250ms ease-in;
+    }
+.fa-twitter:hover {
+        color: #00aced;
+        transition: all 250ms ease-in;
+    }
+.fa-instagram:hover {
+    color: #517fa4;
+    transition: all 250ms ease-in;
+}
+.fa-medium:hover {
+    color: $black;
+    transition: all 250ms ease-in;
+}
+

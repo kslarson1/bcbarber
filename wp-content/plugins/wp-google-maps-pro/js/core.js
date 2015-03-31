@@ -21,8 +21,12 @@ var items;
 var default_items;
 var pagination;
 var navigation;
+
+
 var retina = window.devicePixelRatio > 1;
 
+
+var click_from_list = false;
             
 autoheight = true;
 autoplay = 6000;
@@ -220,8 +224,6 @@ function searchLocationsNear(mapid,category,center_searched,search_title) {
     
 
 
-    //MYMAP[mapid].init("#wpgmza_map_"+mapid, center_searched, zoomie, 3,mapid);
-    //MYMAP[mapid].placeMarkers(wpgmaps_markerurl+mapid+'markers.xml?u='+UniqueCode,mapid,category,radius,center_searched,distance_type,search_title);
     
     
     if (typeof wpgmaps_map_mashup[mapid] !== "undefined" && wpgmaps_map_mashup[mapid] === true) {
@@ -304,7 +306,6 @@ function wpgmza_reinitialisetbl(map_id) {
         jQuery.post(ajaxurl, data, function(response) {
 
                 jQuery("#wpgmza_table_"+map_id+"").html(response);
-                //jQuery("#wpgmza_table_"+map_id).dataTable( {"bDestroy":true});
                 wpgmzaTable[map_id] = jQuery('#wpgmza_table_'+map_id).dataTable({
                         "bDestroy":true,
                         responsive: true,
@@ -406,7 +407,6 @@ function wpgmza_filter_marker_lists(wpgmza_map_id,selectedValue) {
     if (typeof jQuery("#wpgmza_table_"+wpgmza_map_id) === "object") { 
         if (selectedValue === 0 || selectedValue === "All" || selectedValue === "0") {
             
-            //wpgmzaTable[wpgmza_map_id].fnFilter( '' ); OLD METHOD
             /* update datatables */
             var data = {
                     action: 'wpgmza_datatables',
@@ -416,7 +416,6 @@ function wpgmza_filter_marker_lists(wpgmza_map_id,selectedValue) {
             };
             jQuery.post(ajaxurl, data, function(response) {
                     jQuery("#wpgmza_table_"+wpgmza_map_id+"").html(response);
-                    //jQuery("#wpgmza_table_"+wpgmza_map_id).dataTable( {"bDestroy":true});
                     wpgmzaTable[wpgmza_map_id] = jQuery('#wpgmza_table_'+wpgmza_map_id).dataTable({
                         "bDestroy":true,
                         responsive: true,
@@ -442,7 +441,6 @@ function wpgmza_filter_marker_lists(wpgmza_map_id,selectedValue) {
             });
         } else { 
             
-            //wpgmzaTable[wpgmza_map_id].fnFilter( this.options[this.selectedIndex].text ); OLD METHOD
             /* update datatables */
             var data = {
                     action: 'wpgmza_datatables',
@@ -452,7 +450,6 @@ function wpgmza_filter_marker_lists(wpgmza_map_id,selectedValue) {
             };
             jQuery.post(ajaxurl, data, function(response) {
                     jQuery("#wpgmza_table_"+wpgmza_map_id+"").html(response);
-                    //jQuery("#wpgmza_table_"+wpgmza_map_id).dataTable( {"bDestroy":true});
                     wpgmzaTable[wpgmza_map_id] = jQuery('#wpgmza_table_'+wpgmza_map_id).dataTable({
                         "bDestroy":true,
                         responsive: true,
@@ -578,7 +575,6 @@ function wpgmza_filter_marker_lists(wpgmza_map_id,selectedValue) {
 function reset_marker_lists(wpgmza_map_id) {
 
     if (typeof jQuery("#wpgmza_table_"+wpgmza_map_id) === "object" && jQuery("#wpgmza_table_"+wpgmza_map_id).length > 0) {
-            //wpgmzaTable[wpgmza_map_id].fnFilter( '' ); OLD METHOD
             /* update datatables */
             var data = {
                     action: 'wpgmza_datatables',
@@ -588,7 +584,6 @@ function reset_marker_lists(wpgmza_map_id) {
             };
             jQuery.post(ajaxurl, data, function(response) {
                     jQuery("#wpgmza_table_"+wpgmza_map_id+"").html(response);
-                    //jQuery("#wpgmza_table_"+wpgmza_map_id).dataTable( {"bDestroy":true});
                     wpgmzaTable[wpgmza_map_id] = jQuery('#wpgmza_table_'+wpgmza_map_id).dataTable({
                         "bDestroy":true,
                         responsive: true,
@@ -735,13 +730,13 @@ jQuery(function() {
             jQuery("body").on("click", ".wpgmaps_mlist_row", function() {
                 var wpgmza_markerid = jQuery(this).attr("mid");
                 var wpgmza_mapid = jQuery(this).attr("mapid");
-                openInfoWindow(wpgmza_markerid,wpgmza_mapid);
+                openInfoWindow(wpgmza_markerid,wpgmza_mapid,true);
                 location.hash = "#marker" + wpgmza_markerid;
             });
             jQuery("body").on("click", ".wpgmaps_blist_row", function() {
                 var wpgmza_markerid = jQuery(this).attr("mid");
                 var wpgmza_mapid = jQuery(this).attr("mapid");
-                openInfoWindow(wpgmza_markerid,wpgmza_mapid);
+                openInfoWindow(wpgmza_markerid,wpgmza_mapid,true);
                 
             });
             jQuery("body").on("change", "#wpgmza_filter_select", function() {
@@ -839,7 +834,6 @@ jQuery(function() {
                 });            
             }
             
-            // here
     
             for(var entry in wpgmaps_localize) {
                 InitMap(wpgmaps_localize[entry]['id'],wpgmaps_localize_cat_ids[wpgmaps_localize[entry]['id']],false);
@@ -920,7 +914,7 @@ jQuery(function() {
     
     for(var entry in wpgmaps_localize) {
 
-    // general directions settings and variables
+    /* general directions settings and variables */
     directionsDisplay[wpgmaps_localize[entry]['id']];
     directionsService[wpgmaps_localize[entry]['id']] = new google.maps.DirectionsService();
     var currentDirections = null;
@@ -950,7 +944,7 @@ jQuery(function() {
     if (wpgmaps_localize_global_settings['wpgmza_settings_map_streetview'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_map_streetview']) { wpgmza_settings_map_streetview = true; } else { wpgmza_settings_map_streetview = false; }
 
 
-    if (wpgmaps_localize[entry]['other_settings']['map_max_zoom'] === "" || 'undefined' === typeof wpgmaps_localize[entry]['other_settings']['map_max_zoom']) { wpgmza_max_zoom = 0; } else { wpgmza_max_zoom = wpgmaps_localize[entry]['other_settings']['map_max_zoom']; }
+    if ('undefined' === typeof wpgmaps_localize[entry]['other_settings']['map_max_zoom'] || wpgmaps_localize[entry]['other_settings']['map_max_zoom'] === "") { wpgmza_max_zoom = 0; } else { wpgmza_max_zoom = parseInt(wpgmaps_localize[entry]['other_settings']['map_max_zoom']); }
 
 
     
@@ -1136,7 +1130,6 @@ jQuery(function() {
         }
         
         
-
 
         if (wpgm_g_e === true) {
             if (wpgmza_adv_styling_json[mapid] !== "") {
@@ -1420,6 +1413,10 @@ jQuery(function() {
         marker_array2[map_id] = new Array(); 
         var check1 = 0;
 
+        if (wpgmaps_localize_global_settings['wpgmza_settings_image_width'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_width']) { wpgmaps_localize_global_settings['wpgmza_settings_image_width'] = 'auto'; } else { wpgmaps_localize_global_settings['wpgmza_settings_image_width'] = wpgmaps_localize_global_settings['wpgmza_settings_image_width']+'px'; }
+        if (wpgmaps_localize_global_settings['wpgmza_settings_image_height'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_height']) { wpgmaps_localize_global_settings['wpgmza_settings_image_height'] = 'auto'; } else { wpgmaps_localize_global_settings['wpgmza_settings_image_height'] = wpgmaps_localize_global_settings['wpgmza_settings_image_height']+'px'; }
+
+
         if (marker_pull === '1') {
         
         
@@ -1520,22 +1517,22 @@ jQuery(function() {
                                         radius: parseInt(radius / 0.001)
                                       };
                               }
-                            // Add the circle for this city to the map.
+                            /* Add the circle for this city to the map. */
                             cityCircle[map_id] = new google.maps.Circle(populationOptions);
                             check1 = check1 + 1;
                         }
 
                         if (distance_type === "1") {
-                            R = 3958.7558657440545; // Radius of earth in Miles 
+                            R = 3958.7558657440545; /* Radius of earth in Miles  */
                         } else {
-                            R = 6378.16; // Radius of earth in kilometers 
+                            R = 6378.16; /* Radius of earth in kilometers  */
                         }
                         var dLat = toRad(searched_center.lat()-current_lat);
                         var dLon = toRad(searched_center.lng()-current_lng); 
                         var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(toRad(current_lat)) * Math.cos(toRad(searched_center.lat())) * Math.sin(dLon/2) * Math.sin(dLon/2); 
                         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
                         var d = R * c;
-                        //alert("distance: "+d);
+                        
                         if (d < radius) { show_marker_radius = true; } else { show_marker_radius = false; }
 
 
@@ -1600,8 +1597,8 @@ jQuery(function() {
                         
 
                         if (wpmgza_image !== "") {
-                            if (wpgmaps_localize_global_settings['wpgmza_settings_image_width'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_width']) { wpgmaps_localize_global_settings['wpgmza_settings_image_width'] = '100'; }
-                            if (wpgmaps_localize_global_settings['wpgmza_settings_image_height'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_height']) { wpgmaps_localize_global_settings['wpgmza_settings_image_height'] = '100'; }
+                            
+
 
 
                             /* timthumb completely removed in 5.54 */
@@ -1609,10 +1606,11 @@ jQuery(function() {
                                     wpmgza_image = "<img src=\""+wpgmaps_plugurl+"/timthumb.php?src="+wpmgza_image+"&h="+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"&w="+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"&zc=1\" title=\"\" class=\"wpgmza_infowindow_image\" width=\""+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"\" height=\""+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"\" style=\"float:right; width:"+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"px; height:"+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"px;\" />";
                             } else {*/
                                 if ('undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_resizing'] || wpgmaps_localize_global_settings['wpgmza_settings_image_resizing'] === "yes") {
-                                    wpmgza_image = "<img src=\""+wpmgza_image+"\" title=\"\" class=\"wpgmza_infowindow_image\" alt=\"\" style=\"float:right; width:"+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"px; height:"+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"px;\" />";
+
+                                    wpmgza_image = "<img src=\""+wpmgza_image+"\" title=\"\" class=\"wpgmza_infowindow_image\" alt=\"\" style=\"float:right; width:"+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"; height:"+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"; max-width:"+wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']+"px !important;\" />";
 
                                 } else {
-                                    wpmgza_image = "<img src=\""+wpmgza_image+"\" class=\"wpgmza_infowindow_image wpgmza_map_image\" style=\"float:right; margin:5px; \" />";
+                                    wpmgza_image = "<img src=\""+wpmgza_image+"\" class=\"wpgmza_infowindow_image wpgmza_map_image\" style=\"float:right; margin:5px; max-width:"+wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']+"px !important;\" />";
                                 }
                             /*}*/
 
@@ -1746,7 +1744,6 @@ jQuery(function() {
 
 
                             if (wpmgza_infoopen === "1") {
-                                //infoWindow.close();
                                 infoWindow.setContent(html);
                                 infoWindow.open(MYMAP[map_id].map, marker);
                             }
@@ -1774,16 +1771,25 @@ jQuery(function() {
                                     infoWindow.close();
                                     infoWindow.setOptions({maxWidth:wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']});
                                     infoWindow.setContent(html);
+                                    if (click_from_list) {
+                                        MYMAP[map_id].map.panTo(marker.position);
+                                        MYMAP[map_id].map.setZoom(13);
+                                    }
+                                    click_from_list = false;                                    
                                     infoWindow.open(MYMAP[map_id].map, marker);
-                                    MYMAP[map_id].map.setCenter(this.position);
                                 }); 
                             } else {
                                 google.maps.event.addListener(marker, 'mouseover', function(evt) {
                                     infoWindow.close();
                                     infoWindow.setOptions({maxWidth:wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']});
                                     infoWindow.setContent(html);
+                                    if (click_from_list) {
+                                        MYMAP[map_id].map.panTo(marker.position);
+                                        MYMAP[map_id].map.setZoom(13);
+                                    }
+                                    click_from_list = false;
                                     infoWindow.open(MYMAP[map_id].map, marker);
-                                    MYMAP[map_id].map.setCenter(this.position);
+                                    
                                 }); 
                             }
                             marker_array[map_id][wpmgza_marker_id] = marker;
@@ -1842,7 +1848,6 @@ jQuery(function() {
             /* DB method */
             jQuery.each(wpgmaps_localize_marker_data[map_id], function(i, val) {
                 
-//            for (var entry_markers in wpgmaps_localize_marker_data[0]) {
                 
                 var wpgmza_def_icon = wpgmaps_localize[map_id]['default_marker'];
                 
@@ -1947,22 +1952,21 @@ jQuery(function() {
                                     radius: parseInt(radius / 0.001)
                                   };
                           }
-                        // Add the circle for this city to the map.
                         cityCircle[map_id] = new google.maps.Circle(populationOptions);
                         check1 = check1 + 1;
                     }
 
                     if (distance_type === "1") {
-                        R = 3958.7558657440545; // Radius of earth in Miles 
+                        R = 3958.7558657440545;
                     } else {
-                        R = 6378.16; // Radius of earth in kilometers 
+                        R = 6378.16;
                     }
                     var dLat = toRad(searched_center.lat()-current_lat);
                     var dLon = toRad(searched_center.lng()-current_lng); 
                     var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(toRad(current_lat)) * Math.cos(toRad(searched_center.lat())) * Math.sin(dLon/2) * Math.sin(dLon/2); 
                     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
                     var d = R * c;
-                    //alert("distance: "+d);
+                    
                     if (d < radius) { show_marker_radius = true; } else { show_marker_radius = false; }
 
 
@@ -2031,18 +2035,16 @@ jQuery(function() {
                     
                     var wpmgza_infoopen  = val.infoopen;
                     if (wpmgza_image !== "") {
-                        if (wpgmaps_localize_global_settings['wpgmza_settings_image_width'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_width']) { wpgmaps_localize_global_settings['wpgmza_settings_image_width'] = '100'; }
-                        if (wpgmaps_localize_global_settings['wpgmza_settings_image_height'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_height']) { wpgmaps_localize_global_settings['wpgmza_settings_image_height'] = '100'; }
 
                         /* timthumb completely removed in 5.54 */
                         /*if (wpgmaps_localize_global_settings['wpgmza_settings_use_timthumb'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_use_timthumb']) {
                                 wpmgza_image = "<img src=\""+wpgmaps_plugurl+"/timthumb.php?src="+wpmgza_image+"&h="+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"&w="+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"&zc=1\" title=\"\" class=\"wpgmza_infowindow_image\" width=\""+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"\" height=\""+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"\" style=\"float:right; width:"+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"px; height:"+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"px;\" />";
                         } else {*/
                             if ('undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_image_resizing'] || wpgmaps_localize_global_settings['wpgmza_settings_image_resizing'] === "yes") {
-                                wpmgza_image = "<img src=\""+wpmgza_image+"\" title=\"\" class=\"wpgmza_infowindow_image\" alt=\"\" style=\"float:right; width:"+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"px; height:"+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"px;\" />";
+                                    wpmgza_image = "<img src=\""+wpmgza_image+"\" title=\"\" class=\"wpgmza_infowindow_image\" alt=\"\" style=\"float:right; width:"+wpgmaps_localize_global_settings['wpgmza_settings_image_width']+"; height:"+wpgmaps_localize_global_settings['wpgmza_settings_image_height']+"; max-width:"+wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']+"px !important;\" />";
 
-                            } else {
-                                wpmgza_image = "<img src=\""+wpmgza_image+"\" class=\"wpgmza_infowindow_image wpgmza_map_image\" style=\"float:right; margin:5px; \" />";
+                                } else {
+                                    wpmgza_image = "<img src=\""+wpmgza_image+"\" class=\"wpgmza_infowindow_image wpgmza_map_image\" style=\"float:right; margin:5px; max-width:"+wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']+"px !important;\" />";
                             }
                         /*}*/
                     }
@@ -2168,7 +2170,7 @@ jQuery(function() {
 
 
                         if (wpmgza_infoopen === "1") {
-                            //infoWindow.close();
+                            
                             infoWindow.setContent(html);
                             infoWindow.open(MYMAP[map_id].map, marker);
                         }
@@ -2196,8 +2198,14 @@ jQuery(function() {
                                 infoWindow.close();
                                 infoWindow.setOptions({maxWidth:wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']});
                                 infoWindow.setContent(html);
+                                if (click_from_list) {
+                                    MYMAP[map_id].map.panTo(marker.position);
+                                    MYMAP[map_id].map.setZoom(13);
+                                }
+                                click_from_list = false;
+
                                 infoWindow.open(MYMAP[map_id].map, marker);
-                                MYMAP[map_id].map.setCenter(this.position);
+                                
 
                             }); 
                         } else {
@@ -2205,8 +2213,13 @@ jQuery(function() {
                                 infoWindow.close();
                                 infoWindow.setOptions({maxWidth:wpgmaps_localize_global_settings['wpgmza_settings_infowindow_width']});
                                 infoWindow.setContent(html);
+                                if (click_from_list) {
+                                    MYMAP[map_id].map.panTo(marker.position);
+                                    MYMAP[map_id].map.setZoom(13);
+                                }
+                                click_from_list = false;
                                 infoWindow.open(MYMAP[map_id].map, marker);
-                                MYMAP[map_id].map.setCenter(this.position);
+                                
 
                             }); 
                         }
@@ -2265,7 +2278,6 @@ jQuery(function() {
         }
         
         if (wpgmaps_localize[entry]['show_user_location'] === "1") {
-            // Try HTML5 geolocation
             if(navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                   user_location = new google.maps.LatLng(position.coords.latitude,
@@ -2286,7 +2298,7 @@ jQuery(function() {
 
                 });
              } else {
-              // Browser doesn't support Geolocation
+              /* Browser doesn't support Geolocation */
             }       
         }
 
@@ -2422,7 +2434,12 @@ jQuery(function() {
 
 
 
-function openInfoWindow(marker_id,map_id) {
+function openInfoWindow(marker_id,map_id,by_list) {
+    if (by_list) {
+        click_from_list = true;
+    } else {
+        click_from_list = false;
+    }
 
     if (wpgmaps_localize_global_settings['wpgmza_settings_map_open_marker_by'] === "" || 'undefined' === typeof wpgmaps_localize_global_settings['wpgmza_settings_map_open_marker_by'] || wpgmaps_localize_global_settings['wpgmza_settings_map_open_marker_by'] === '1') { 
         google.maps.event.trigger(marker_array[map_id][marker_id], 'click');

@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		
-					<a href="https://www.schedulicity.com/Scheduling/BBCLVL" class="button_wide" target="_blank">Book Now</a>
+					<a href="https://www.schedulicity.com/Scheduling/BBCLVL/services" class="button_wide" target="_blank">Book Now</a>
 				
 	</footer><!-- #colophon -->
 </div><!-- #page -->

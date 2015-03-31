@@ -292,7 +292,7 @@ class wpgmza {
                             $wpgmza_tmp_body .= "<div class='wpgmza-basic-listing-image-holder'>$pic</div>";
                             $wpgmza_tmp_body .= "";
                             $wpgmza_tmp_body .= "<div class='wpgmza-content-address-holder'>";
-                            if (isset($title) && $title != "") {
+                            if (isset($result->title) && $result->title != "") {
                             $wpgmza_tmp_body .= "<p><strong><a href=\"javascript:void(0);\" id=\"wpgmaps_marker_$wpgmaps_id\" title=\"".stripslashes($result->title)."\">".stripslashes($result->title)."</a></strong></p>";
                             }
                             if (isset($hide_icon_column) && $hide_icon_column == "yes") { } else { 
@@ -306,6 +306,7 @@ class wpgmza {
                             if (isset($hide_description_column) && $hide_description_column == "yes") { } else { 
                             $wpgmza_tmp_body .= "<div class='wpgmza-desc'>";
                             $wpgmza_tmp_body .= "<p>".stripslashes($result->description)."</p>";
+                            $wpgmza_tmp_body .= "<p>".$wpgmaps_dir_text."</p>";
                             $wpgmza_tmp_body .= "</div>";
                             }                                
                             $wpgmza_tmp_body .= "</div>";

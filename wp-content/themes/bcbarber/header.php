@@ -15,6 +15,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">	<!-- Font Awesome -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>  <!-- modernizr -->
 
 <?php wp_head(); ?>
 </head>
@@ -23,22 +24,28 @@
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'bcbarber' ); ?></a>
 
-<header id="header">
-  <div class="container-fluid">
-  <div class="row">
-  <div class="col-xs-12">
-    <h2>BC Barber Co.</h2>
-    <nav id="nav" role="navigation">
-      <ul>
-        <li><a href="/#home" class="smoothScroll">Home</a></li>
-        <li><a href="#services" class="smoothScroll">Services</a></li>
-        <li><a href="/#about" class="smoothScroll">About</a></li>
-        <li><a href="/#location" class="smoothScroll">Location</a></li>
-      </ul>
-    </nav>
-    </div> <!-- col-xs-12 -->
-    </div> <!--Row -->
-  </div>	<!--Container -->
-</header>
+<header id="masthead" class="site-header" role="banner">
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            
+            <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'menu', 'ul' => 'menu' ) ); ?>
+
+          </div>
+        </div>
+      </div>
+
+    </nav><!-- #site-navigation -->
+<!-- initialize slicknav -->
+<script>
+  $(function(){
+    $('#menu').slicknav();
+  });
+</script>
+
+  </header><!-- #masthead -->
 
 	<div id="content" class="site-content">

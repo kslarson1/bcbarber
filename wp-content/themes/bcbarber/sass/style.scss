@@ -64,7 +64,6 @@ and Blueprint http://www.blueprintcss.org/
 1.7 Bootstrap
 --------------------------------------------------------------*/
 @import "bootstrap/bootstrap";
-@import "bootstrap/bootstrap-theme";
 
 /*--------------------------------------------------------------
 2.0 Typography
@@ -85,7 +84,8 @@ and Blueprint http://www.blueprintcss.org/
 5.0 Navigation
 --------------------------------------------------------------*/
 @import "navigation/navigation";
-@import "navigation/trunk";
+@import "navigation/menus";
+@import "navigation/slicknav";
 
 /*--------------------------------------------------------------
 6.0 Accessibility

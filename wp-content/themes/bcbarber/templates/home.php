@@ -27,7 +27,7 @@ get_header(); ?>
 			<h3><?php the_field('home_subheader'); ?></h3>
 			<br>
 			<br>
-			<a href="https://www.schedulicity.com/Scheduling/BBCLVL" class="button_flat" target="_blank">Book Now</a>
+			<a href="https://www.schedulicity.com/Scheduling/BBCLVL/services" class="button_flat" target="_blank">Book Now</a>
 			<a href="#services" class="smoothScroll"><i class="fa fa-angle-double-down fa-4x"></i></a>
 		</div>
 	</div>
@@ -68,7 +68,7 @@ if( have_rows('services_list') ):
 	        <h4><?php the_sub_field('services_list_name'); ?></h4>
 	        <hr>
 	        <p><?php the_sub_field('services_list_text'); ?></p>
-	        <a class="button_flat_services" href="https://www.schedulicity.com/Scheduling/BBCLVL" target="_blank">Book Now</a>
+	        <a class="button_flat_services" href="https://www.schedulicity.com/Scheduling/BBCLVL/services" target="_blank">Book Now</a>
 	        <span class="service_details">
 	        	<i class="fa fa-clock-o"></i><p><?php the_sub_field('services_list_time'); ?></p><p class="service_right"><?php the_sub_field('services_list_cost'); ?></p>
 	        </span>
@@ -116,7 +116,7 @@ endif;
 			<div class="row">
 				<div class="col-xs-12">
 				<div class="about_inline">
-					<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL" target="_blank">Book Now</a><a class="button_flat" href="/barbers">Meet Us</a><a class="button_flat" href="/events">Events</a>
+					<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL/services" target="_blank">Book Now</a><a class="button_flat" href="barbers">Meet Us</a><a class="button_flat" href="events">Events</a>
 				</div>
 				</div>
 			</div>
@@ -149,8 +149,11 @@ if( have_rows('location_hours') ):
     while ( have_rows('location_hours') ) : the_row(); ?>
 
         <!-- // display a sub field value -->
-        <p><b><?php the_sub_field('hours_day'); ?> </b><?php the_sub_field('hours_hours'); ?></p>
-
+        <div class="row">
+        	<div class="col-xs-12">
+        		<p class="uppercase inline"><?php the_sub_field('hours_day'); ?></p> <p class="inline"><?php the_sub_field('hours_hours'); ?></p>
+			</div>
+        </div>
     <?php endwhile;
 
 else :

@@ -3,10 +3,20 @@
 Plugin Name: WP Google Maps - Pro Add-on
 Plugin URI: http://www.wpgmaps.com
 Description: This is the Pro add-on for WP Google Maps. The Pro add-on enables you to add descriptions, pictures, links and custom icons to your markers as well as allows you to download your markers to a CSV file for quick editing and re-upload them when complete.
-Version: 5.54
+Version: 5.55
 Author: WP Google Maps
 Author URI: http://www.wpgmaps.com
  
+ * 5.55
+ * Directions box width can now be set to either PX or %
+ * Marker image width and/or height can now be left blank to automatically set the width/height
+ * Clicking/hovering on a marker no longer pans the map to that marker
+ * Mass marker bug fix
+ * Now using sensor=true in the geocoding API calls
+ * Fixed max zoom bug
+ * Fixed the bug that caused the marker title to not show up in the marker listing (basic table) in certain instances
+ * "Get directions" now appears in the basic table marker list
+ * 
  * 5.54 2015-03-16
  * Timthumb removed
  * New marker listing functionality - you can now list your markers in the map itself
@@ -452,7 +462,7 @@ Author URI: http://www.wpgmaps.com
 //error_reporting(E_ERROR);
 global $wpgmza_pro_version;
 global $wpgmza_pro_string;
-$wpgmza_pro_version = "5.54";
+$wpgmza_pro_version = "5.55";
 $wpgmza_pro_string = "pro";
 
 global $wpgmza_current_map_cat_selection;
@@ -1191,7 +1201,11 @@ function wpgmza_pro_menu() {
                                 ".__("Directions Box Width","wp-google-maps").":
                             </td>
                             <td>
-                                <input id='wpgmza_dbox_width' name='wpgmza_dbox_width' type='text' size='4' maxlength='4' class='small-text' value='".$res->dbox_width."' /> px
+                                <input id='wpgmza_dbox_width' name='wpgmza_dbox_width' type='text' size='4' maxlength='4' class='small-text' value='".$res->dbox_width."' /> 
+                                <select id='wpgmza_dbox_width_type' name='wpgmza_dbox_width_type' class='postform'>
+	                                <option value=\"px\" ".$wpgmza_dbox_width_type[1].">".__("px","wp-google-maps")."</option>
+	                                <option value=\"%\" ".$wpgmza_dbox_width_type[2].">".__("%","wp-google-maps")."</option>
+                            	</select>
                             </td>
                         </tr>
                         <tr>
@@ -1931,7 +1945,9 @@ function wpgmaps_tag_pro( $atts ) {
     $map_width_type = $res->map_width_type;
     // for marker list
     $default_marker = $res->default_marker;
-    
+    $map_other_settings = maybe_unserialize($res->other_settings);
+
+
     if (isset($res->default_to)) { $default_to = $res->default_to; } else { $default_to = ""; }
     
     $show_location = $res->show_user_location;
@@ -1945,11 +1961,20 @@ function wpgmaps_tag_pro( $atts ) {
     if ($default_marker) { $default_marker = "<img src='".$default_marker."' />"; } else { $default_marker = "<img src='".wpgmaps_get_plugin_url()."/images/marker.png' />"; }
     $dbox_width = $res->dbox_width;
     $dbox_option = $res->dbox;
-    if ($dbox_option == "1") { $dbox_style = "display:none;"; }
-    else if ($dbox_option == "2") { $dbox_style = "float:left; width:".$dbox_width."px; padding-right:10px; display:block; overflow:auto;"; }
-    else if ($dbox_option == "3") { $dbox_style = "float:right; width:".$dbox_width."px; padding-right:10px; display:block; overflow:auto;"; }
-    else if ($dbox_option == "4") { $dbox_style = "float:none; width:".$dbox_width."px; padding-bottom:10px; display:block; overflow:auto; clear:both;"; }
-    else if ($dbox_option == "5") { $dbox_style = "float:none; width:".$dbox_width."px; padding-top:10px; display:block; overflow:auto; clear:both;"; }
+
+
+    /* set the width of the directions box */
+
+    if (isset($map_other_settings['wpgmza_dbox_width_type'])) { $wpgmza_dbox_width_type = $map_other_settings['wpgmza_dbox_width_type']; } else { $wpgmza_dbox_width_type = "px"; }
+
+
+
+
+    if ($dbox_option == "1") { $dbox_style = "display:none; width:".$dbox_width.$wpgmza_dbox_width_type."; clear:both;"; }
+    else if ($dbox_option == "2") { $dbox_style = "float:left; width:".$dbox_width.$wpgmza_dbox_width_type."; padding-right:10px; display:block; overflow:auto;"; }
+    else if ($dbox_option == "3") { $dbox_style = "float:right; width:".$dbox_width.$wpgmza_dbox_width_type."; padding-right:10px; display:block; overflow:auto;"; }
+    else if ($dbox_option == "4") { $dbox_style = "float:none; width:".$dbox_width.$wpgmza_dbox_width_type."; padding-bottom:10px; display:block; overflow:auto; clear:both;"; }
+    else if ($dbox_option == "5") { $dbox_style = "float:none; width:".$dbox_width.$wpgmza_dbox_width_type."; padding-top:10px; display:block; overflow:auto; clear:both;"; }
     else { $dbox_style = "display:none;"; }
     $wpgmza_marker_list_output = "";
     $wpgmza_marker_filter_output = "";
@@ -1986,7 +2011,7 @@ function wpgmaps_tag_pro( $atts ) {
     if (isset($hide_address_column) && $hide_address_column == "yes") { $wpgmza_marker_datatables_output .= "<style>.wpgmza_table_address { display: none; }</style>"; }
     if (isset($hide_description_column) && $hide_description_column == "yes") { $wpgmza_marker_datatables_output .= "<style>.wpgmza_table_description { display: none; }</style>"; }
     
-    $map_other_settings = maybe_unserialize($res->other_settings);
+    
     $sl_data = "";
     if (isset($map_other_settings['store_locator_enabled']) && $map_other_settings['store_locator_enabled'] == 1) {
         $sl_data = wpgmaps_sl_user_output_pro($wpgmza_current_map_id);
@@ -2097,11 +2122,10 @@ function wpgmaps_tag_pro( $atts ) {
             $wpgmza_settings = get_option("WPGMZA_OTHER_SETTINGS");
 			if (isset($wpgmza_settings['wpgmza_settings_image_resizing']) && $wpgmza_settings['wpgmza_settings_image_resizing'] == 'yes') { $wpgmza_image_resizing = true; } else { $wpgmza_image_resizing = false; }
             if (isset($wpgmza_settings['wpgmza_settings_image_height'])) { $wpgmza_image_height = $wpgmza_settings['wpgmza_settings_image_height']; } else { $wpgmza_image_height = false; }
-            if (isset($wpgmza_settings['wpgmza_settings_image_width'])) { $wpgmza_image_width = $wpgmza_settings['wpgmza_settings_image_width']; } else { $wpgmza_image_width = false; }
-            if (isset($wpgmza_settings['wpgmza_settings_use_timthumb'])) { $wpgmza_use_timthumb = $wpgmza_settings['wpgmza_settings_use_timthumb']; } else { $wpgmza_use_timthumb = true; }
-
-            if (!$wpgmza_image_height || !isset($wpgmza_image_height)) { $wpgmza_image_height = "100"; }
-            if (!$wpgmza_image_width || !isset($wpgmza_image_width)) { $wpgmza_image_width = "100"; }
+            if (isset($wpgmza_settings['wpgmza_settings_image_height'])) { $wpgmza_image_height = $wpgmza_settings['wpgmza_settings_image_height']."px"; } else { $wpgmza_image_height = false; }
+            if (isset($wpgmza_settings['wpgmza_settings_image_width'])) { $wpgmza_image_width = $wpgmza_settings['wpgmza_settings_image_width']."px"; } else { $wpgmza_image_width = false; }
+            if (!$wpgmza_image_height || !isset($wpgmza_image_height)) { $wpgmza_image_height = "auto"; }
+            if (!$wpgmza_image_width || !isset($wpgmza_image_width)) { $wpgmza_image_width = "auto"; }
             $wmcnt = 0;
             foreach ( $results as $result ) {
                 $wmcnt++;
@@ -2322,6 +2346,7 @@ function wpgmza_generate_marker_list($map_id, $type) {
 function wpgmaps_check_approval_string() {
     if (isset($_POST['wpgmza_approval'] ) && $_POST['wpgmza_approval'] == "1") {
         return "<p class='wpgmza_marker_approval_msg'>".__("Thank you. Your marker is awaiting approval.","wp-google-maps")."</p>";
+
     }
 }
 
@@ -3726,10 +3751,10 @@ function wpgmaps_admin_javascript_pro() {
 											
 											if (isset($wpgmza_settings['wpgmza_settings_image_resizing']) && $wpgmza_settings['wpgmza_settings_image_resizing'] == 'yes') { $wpgmza_image_resizing = true; } else { $wpgmza_image_resizing = false; }
  											if (isset($wpgmza_settings['wpgmza_settings_use_timthumb'])) { $wpgmza_use_timthumb = $wpgmza_settings['wpgmza_settings_use_timthumb']; } else { $wpgmza_use_timthumb = true; }
-                                            if (isset($wpgmza_settings['wpgmza_settings_image_height'])) { $wpgmza_image_height = $wpgmza_settings['wpgmza_settings_image_height']; } else { $wpgmza_image_height = false; }
-                                            if (isset($wpgmza_settings['wpgmza_settings_image_width'])) { $wpgmza_image_width = $wpgmza_settings['wpgmza_settings_image_width']; } else { $wpgmza_image_width = false; }
-                                            if (!$wpgmza_image_height || !isset($wpgmza_image_height)) { $wpgmza_image_height = "100"; }
-                                            if (!$wpgmza_image_width || !isset($wpgmza_image_width)) { $wpgmza_image_width = "100"; }
+                                            if (isset($wpgmza_settings['wpgmza_settings_image_height'])) { $wpgmza_image_height = $wpgmza_settings['wpgmza_settings_image_height']."px"; } else { $wpgmza_image_height = false; }
+                                            if (isset($wpgmza_settings['wpgmza_settings_image_width'])) { $wpgmza_image_width = $wpgmza_settings['wpgmza_settings_image_width']."px"; } else { $wpgmza_image_width = false; }
+                                            if (!$wpgmza_image_height || !isset($wpgmza_image_height)) { $wpgmza_image_height = "auto"; }
+                                            if (!$wpgmza_image_width || !isset($wpgmza_image_width)) { $wpgmza_image_width = "auto"; }
 											
 											/* check if using timthumb */
 											/* timthumb completely removed in 5.54 */
@@ -3889,10 +3914,10 @@ function wpgmaps_admin_javascript_pro() {
 							
 							if (isset($wpgmza_settings['wpgmza_settings_image_resizing']) && $wpgmza_settings['wpgmza_settings_image_resizing'] == 'yes') { $wpgmza_image_resizing = true; } else { $wpgmza_image_resizing = false; }
 							if (isset($wpgmza_settings['wpgmza_settings_use_timthumb'])) { $wpgmza_use_timthumb = $wpgmza_settings['wpgmza_settings_use_timthumb']; } else { $wpgmza_use_timthumb = true; }
-                            if (isset($wpgmza_settings['wpgmza_settings_image_height'])) { $wpgmza_image_height = $wpgmza_settings['wpgmza_settings_image_height']; } else { $wpgmza_image_height = false; }
-                            if (isset($wpgmza_settings['wpgmza_settings_image_width'])) { $wpgmza_image_width = $wpgmza_settings['wpgmza_settings_image_width']; } else { $wpgmza_image_width = false; }
-                            if (!$wpgmza_image_height || !isset($wpgmza_image_height)) { $wpgmza_image_height = "100"; }
-                            if (!$wpgmza_image_width || !isset($wpgmza_image_width)) { $wpgmza_image_width = "100"; }
+                            if (isset($wpgmza_settings['wpgmza_settings_image_height'])) { $wpgmza_image_height = $wpgmza_settings['wpgmza_settings_image_height']."px"; } else { $wpgmza_image_height = false; }
+                            if (isset($wpgmza_settings['wpgmza_settings_image_width'])) { $wpgmza_image_width = $wpgmza_settings['wpgmza_settings_image_width']."px"; } else { $wpgmza_image_width = false; }
+                            if (!$wpgmza_image_height || !isset($wpgmza_image_height)) { $wpgmza_image_height = "auto"; }
+                            if (!$wpgmza_image_width || !isset($wpgmza_image_width)) { $wpgmza_image_width = "auto"; }
 							
 							/* check if using timthumb */
 							/* timthumb completely removed in 5.54 */
@@ -4098,7 +4123,7 @@ function wpgmaps_upload_csv() {
 
                                     } else {
 
-                                    $url = "https://maps.googleapis.com/maps/api/geocode/json?key=". $googlekey ."&address=" . str_replace (" ", "+", urlencode($data[2]));;
+                                    $url = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=". $googlekey ."&address=" . str_replace (" ", "+", urlencode($data[2]));;
                                     $curl = curl_init($url);
                                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
                                     curl_setopt($curl, CURLOPT_REFERER, $_SERVER['HTTP_HOST']);
@@ -4844,8 +4869,8 @@ function wpgmaps_settings_page_sub($section) {
 
 
 
-        if (!isset($wpgmza_set_img_width) || $wpgmza_set_img_width == "") { $wpgmza_set_img_width = "100"; }
-        if (!isset($wpgmza_set_img_height) || $wpgmza_set_img_height == "" ) { $wpgmza_set_img_height = "100"; }
+        if (!isset($wpgmza_set_img_width) || $wpgmza_set_img_width == "") { $wpgmza_set_img_width = ""; }
+        if (!isset($wpgmza_set_img_height) || $wpgmza_set_img_height == "" ) { $wpgmza_set_img_height = ""; }
         if (!isset($wpgmza_settings_infowindow_width) || $wpgmza_settings_infowindow_width == "") { $wpgmza_settings_infowindow_width = "200"; }
         if (isset($wpgmza_settings_infowindow_links) && $wpgmza_settings_infowindow_links == "yes") { $wpgmza_linkschecked = "checked='checked'"; } else { $wpgmza_linkschecked = ""; }
         if (isset($wpgmza_settings_infowindow_address) && $wpgmza_settings_infowindow_address == "yes") { $wpgmza_addresschecked = "checked='checked'"; } else { $wpgmza_addresschecked = ""; }
@@ -4870,11 +4895,11 @@ function wpgmaps_settings_page_sub($section) {
                     </tr>
                     <tr>
                          <td width='200'>".__("Default Image Width","wp-google-maps").":</td>
-                         <td><input id='wpgmza_settings_image_width' name='wpgmza_settings_image_width' type='text' size='4' maxlength='4' value='$wpgmza_set_img_width' /> px </td>
+                         <td><input id='wpgmza_settings_image_width' name='wpgmza_settings_image_width' type='text' size='4' maxlength='4' value='$wpgmza_set_img_width' /> px  <em>".__("(can be left blank - max width will be limited to max infowindow width)","wp-google-maps")."</em></td>
                     </tr>
                     <tr>
                          <td>".__("Default Image Height","wp-google-maps").":</td>
-                         <td><input id='wpgmza_settings_image_height' name='wpgmza_settings_image_height' type='text' size='4' maxlength='4' value='$wpgmza_set_img_height' /> px </td>
+                         <td><input id='wpgmza_settings_image_height' name='wpgmza_settings_image_height' type='text' size='4' maxlength='4' value='$wpgmza_set_img_height' /> px <em>".__("(can be left blank - leaving both the width and height blank will revert to full size images being used)","wp-google-maps")."</em></td>
                     </tr>
                     <tr>
                          <td>".__("Max InfoWindow Width","wp-google-maps").":</td>
@@ -4995,6 +5020,9 @@ function wpgmaps_head_pro() {
         if (isset($_POST['wpgmza_store_locator_query_string'])) { $other_settings['store_locator_query_string'] = esc_attr($_POST['wpgmza_store_locator_query_string']); }
         if (isset($_POST['wpgmza_store_locator_name_string'])) { $other_settings['store_locator_name_string'] = esc_attr($_POST['wpgmza_store_locator_name_string']); }
 
+        if (isset($_POST['wpgmza_dbox_width_type'])) { $other_settings['wpgmza_dbox_width_type'] = esc_attr($_POST['wpgmza_dbox_width_type']); }
+
+        
         $map_max_zoom = intval($_POST['wpgmza_max_zoom']);
         $other_settings['map_max_zoom'] = sanitize_text_field($map_max_zoom);
         $other_settings['sl_stroke_color'] = $_POST['sl_stroke_color'];
@@ -5342,10 +5370,9 @@ function wpgmaps_head_pro() {
     }
     else if (isset($_POST['wpgmza_save_settings'])){
         global $wpdb;
-        
         if (isset($_POST['wpgmza_settings_image_resizing'])) { $wpgmza_data['wpgmza_settings_image_resizing'] = esc_attr($_POST['wpgmza_settings_image_resizing']); } else { $wpgmza_data['wpgmza_settings_image_resizing'] = 'no'; }
-        if (isset($_POST['wpgmza_settings_image_width'])) { $wpgmza_data['wpgmza_settings_image_width'] = esc_attr($_POST['wpgmza_settings_image_width']); }
-        if (isset($_POST['wpgmza_settings_image_height'])) { $wpgmza_data['wpgmza_settings_image_height'] = esc_attr($_POST['wpgmza_settings_image_height']); }
+        if (isset($_POST['wpgmza_settings_image_width'])) { $wpgmza_data['wpgmza_settings_image_width'] = esc_attr($_POST['wpgmza_settings_image_width']); } else { $wpgmza_data['wpgmza_settings_image_width'] = ""; }
+        if (isset($_POST['wpgmza_settings_image_height'])) { $wpgmza_data['wpgmza_settings_image_height'] = esc_attr($_POST['wpgmza_settings_image_height']); } else { $wpgmza_data['wpgmza_settings_image_height'] = ""; }
         if (isset($_POST['wpgmza_settings_use_timthumb'])) { $wpgmza_data['wpgmza_settings_use_timthumb'] = esc_attr($_POST['wpgmza_settings_use_timthumb']); }
         if (isset($_POST['wpgmza_settings_infowindow_width'])) { $wpgmza_data['wpgmza_settings_infowindow_width'] = esc_attr($_POST['wpgmza_settings_infowindow_width']); }
         if (isset($_POST['wpgmza_settings_infowindow_links'])) { $wpgmza_data['wpgmza_settings_infowindow_links'] = esc_attr($_POST['wpgmza_settings_infowindow_links']); }
@@ -5360,15 +5387,15 @@ function wpgmaps_head_pro() {
         if (isset($_POST['wpgmza_settings_map_clickzoom'])) { $wpgmza_data['wpgmza_settings_map_clickzoom'] = esc_attr($_POST['wpgmza_settings_map_clickzoom']); }
         if (isset($_POST['wpgmza_settings_map_striptags'])) { $wpgmza_data['wpgmza_settings_ugm_striptags'] = esc_attr($_POST['wpgmza_settings_map_striptags']); } else { $wpgmza_data['wpgmza_settings_map_striptags'] = '0'; }
         if (isset($_POST['wpgmza_settings_ugm_autoapprove'])) { $wpgmza_data['wpgmza_settings_ugm_autoapprove'] = esc_attr($_POST['wpgmza_settings_ugm_autoapprove']); } else { $wpgmza_data['wpgmza_settings_ugm_autoapprove'] = '0'; }
+        if (isset($_POST['wpgmza_settings_ugm_email_new_marker'])) { $wpgmza_data['wpgmza_settings_ugm_email_new_marker'] = esc_attr($_POST['wpgmza_settings_ugm_email_new_marker']); } else { $wpgmza_data['wpgmza_settings_ugm_email_new_marker'] = '0'; }
+        if (isset($_POST['wpgmza_settings_ugm_email_address'])) { $wpgmza_data['wpgmza_settings_ugm_email_address'] = esc_attr($_POST['wpgmza_settings_ugm_email_address']); } else { $wpgmza_data['wpgmza_settings_ugm_autoapprove'] = get_option('admin_email'); }
         if (isset($_POST['wpgmza_settings_force_jquery'])) { $wpgmza_data['wpgmza_settings_force_jquery'] = esc_attr($_POST['wpgmza_settings_force_jquery']); }
         if (isset($_POST['wpgmza_settings_markerlist_category'])) { $wpgmza_data['wpgmza_settings_markerlist_category'] = esc_attr($_POST['wpgmza_settings_markerlist_category']); }
         if (isset($_POST['wpgmza_settings_markerlist_icon'])) { $wpgmza_data['wpgmza_settings_markerlist_icon'] = esc_attr($_POST['wpgmza_settings_markerlist_icon']); }
         if (isset($_POST['wpgmza_settings_markerlist_title'])) { $wpgmza_data['wpgmza_settings_markerlist_title'] = esc_attr($_POST['wpgmza_settings_markerlist_title']); }
         if (isset($_POST['wpgmza_settings_markerlist_address'])) { $wpgmza_data['wpgmza_settings_markerlist_address'] = esc_attr($_POST['wpgmza_settings_markerlist_address']); }
         if (isset($_POST['wpgmza_settings_markerlist_description'])) { $wpgmza_data['wpgmza_settings_markerlist_description'] = esc_attr($_POST['wpgmza_settings_markerlist_description']); }
-
         if (isset($_POST['wpgmza_custom_css'])) { $wpgmza_data['wpgmza_custom_css'] = esc_attr($_POST['wpgmza_custom_css']); }
-
         if (isset($_POST['wpgmza_settings_carousel_markerlist_image'])) { $wpgmza_data['wpgmza_settings_carousel_markerlist_image'] = esc_attr($_POST['wpgmza_settings_carousel_markerlist_image']); }
         if (isset($_POST['wpgmza_settings_carousel_markerlist_title'])) { $wpgmza_data['wpgmza_settings_carousel_markerlist_title'] = esc_attr($_POST['wpgmza_settings_carousel_markerlist_title']); }
         if (isset($_POST['wpgmza_settings_carousel_markerlist_icon'])) { $wpgmza_data['wpgmza_settings_carousel_markerlist_icon'] = esc_attr($_POST['wpgmza_settings_carousel_markerlist_icon']); }
