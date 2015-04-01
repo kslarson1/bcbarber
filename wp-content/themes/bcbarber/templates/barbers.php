@@ -37,26 +37,26 @@ get_header(); ?>
 	    while ( have_rows('about_barbers') ) : the_row(); ?>
 	      <!--   // display a sub field value -->
 	      	
-	     		<div class="col-xs-12 col-sm-6 col-md-4">
+	     	<div class="col-xs-12 col-sm-6 col-md-4">
 	     		
 	     		<div class="about_item">
-	     		<li>
-	     		<div class="ch-item" style="background-image: url(<?php the_sub_field('about_barber_image'); ?>)">
-		      	<div class="ch-info" >
-		      		<h3><?php the_sub_field('about_barber_name'); ?></h3>
-		      		<p><?php the_sub_field('about_barber_fact'); ?></p>
-		      	</div>
-		      	</div>
-		      	</li>
+		     		<li>
+			     		<div class="ch-item" style="background-image: url(<?php the_sub_field('about_barber_image'); ?>)">
+				      	<div class="ch-info" >
+				      		<h3><?php the_sub_field('about_barber_name'); ?></h3>
+				      		<p><?php the_sub_field('about_barber_fact'); ?></p>
+				      	</div>
+				      	</div>
+			      	</li>
 		      	<!-- END OF CIRCLE IMAGE -->
-		      	<div class="box_out">
-		      		<div class="box_thin">
-		      	<div class="about_item_container">
-		      		<h3 class="center"><?php the_sub_field('about_barber_name'); ?></h3>
-		        	<p class="gray-5"><?php the_sub_field('about_barber_background'); ?></p>
-		        </div>
-		        </div>
-		      	</div>
+			      	<div class="box_out">
+			      		<div class="box_thin">
+					      	<div class="about_item_container">
+					      		<h3 class="center"><?php the_sub_field('about_barber_name'); ?></h3>
+					        	<p class="gray-5"><?php the_sub_field('about_barber_background'); ?></p>
+					        </div>
+			    		</div>
+			      	</div>
 		        </div>
 		    </div>
 	       <?php 

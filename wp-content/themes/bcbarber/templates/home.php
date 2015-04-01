@@ -20,18 +20,18 @@ get_header(); ?>
 <!-- START OF HOME SECTION -->
 <div id="home">
 	<div class="fixed_bg_home" style="background-image: url(<?php the_field('home_bg_image'); ?>);">
-	<div class="container-fluid">
-	<div class="row">
-		<div class="col-xs-12 center">
-			<h1><?php the_field('home_header'); ?></h1>
-			<h3><?php the_field('home_subheader'); ?></h3>
-			<br>
-			<br>
-			<a href="https://www.schedulicity.com/Scheduling/BBCLVL/services" class="button_flat" target="_blank">Book Now</a>
-			<a href="#services" class="smoothScroll"><i class="fa fa-angle-double-down fa-4x"></i></a>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 center">
+					<h1><?php the_field('home_header'); ?></h1>
+					<!-- <h3><?php the_field('home_subheader'); ?></h3> -->
+					<br>
+					<br>
+					<a href="https://www.schedulicity.com/Scheduling/BBCLVL/services" class="button_flat" target="_blank">Book Now</a>
+					<a href="#services" class="smoothScroll"><i class="fa fa-angle-double-down fa-4x"></i></a>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 </div>
 <!-- END OF HOME SECTION -->
@@ -109,14 +109,14 @@ endif;
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-md-10 col-md-offset-1">
+	<div class="col-xs-12 col-md-8 col-md-offset-2">
 		<div class="box_out">
 		<div class="box_thin">
 			<p><?php the_field('about_text'); ?></p>	<!-- ABOUT TEXT -->
 			<div class="row">
 				<div class="col-xs-12">
 				<div class="about_inline">
-					<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL/services" target="_blank">Book Now</a><a class="button_flat" href="barbers">Meet Us</a><a class="button_flat" href="events">Events</a>
+					<a class="button_flat" href="https://www.schedulicity.com/Scheduling/BBCLVL/services" target="_blank">Book Now</a><a class="button_flat" href="barbers">Meet Us</a><!-- <a class="button_flat" href="events">Events</a> -->
 				</div>
 				</div>
 			</div>
