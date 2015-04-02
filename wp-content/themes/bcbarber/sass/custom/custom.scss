@@ -25,13 +25,13 @@
 	background-color: #fff;
 	min-height: 700px;
 	h1 {
-		margin-top: 3em;
+		margin-top: .5em;
 		color: $color_button_3;
 		font-size: 5em;
 	}
 	i {
-		margin-top: 1em;
-		color: $color_bg_2;
+		margin-top: .5em;
+		color: $gray-3;
 	}
 	@media screen and (max-width: 900px) {
 	h1 {

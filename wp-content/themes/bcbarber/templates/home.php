@@ -25,10 +25,9 @@ get_header(); ?>
 				<div class="col-xs-12 center">
 					<h1><?php the_field('home_header'); ?></h1>
 					<!-- <h3><?php the_field('home_subheader'); ?></h3> -->
-					<br>
-					<br>
-					<a href="https://www.schedulicity.com/Scheduling/BBCLVL/services" class="button_flat" target="_blank">Book Now</a>
-					<a href="#services" class="smoothScroll"><i class="fa fa-angle-double-down fa-4x"></i></a>
+					
+					<a href="https://www.schedulicity.com/Scheduling/BBCLVL/services" class="button_flat" target="_blank" style="margin-top: 16em">Book Now</a>
+					<a href="#services" class="smoothScroll"><i class="fa fa-angle-down fa-4x"></i></a>
 				</div>
 			</div>
 		</div>
